@@ -68,7 +68,8 @@ if(COMPILER_RT_CAN_EXECUTE_TESTS)
 
     foreach(sanitizer ${COMPILER_RT_SANITIZERS_TO_BUILD})
       # cfi testing is gated on ubsan
-      if(NOT ${sanitizer} STREQUAL cfi)
+      # no testing for return stacks yet
+      if(NOT ${sanitizer} STREQUAL cfi AND NOT ${sanitizer} STREQUAL returnstack)
         compiler_rt_test_runtime(${sanitizer})
       endif()
     endforeach()
